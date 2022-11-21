@@ -1,0 +1,12 @@
+pip install insta-scrape
+pip install scrape-instagram
+pip install instauto
+https://github.com/stanvanrooy/instauto
+
+https://github.com/Datalux/Osintgram
+
+https://github.com/ping/instagram_private_api
+
+https://github.com/pbiswell/getuseragent
+
+https://github.com/ZuRix1/instagram-scraper/tree/main/instagram-scraper-master
