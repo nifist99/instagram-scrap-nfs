@@ -10,3 +10,5 @@ https://github.com/ping/instagram_private_api
 https://github.com/pbiswell/getuseragent
 
 https://github.com/ZuRix1/instagram-scraper/tree/main/instagram-scraper-master
+
+https://stackoverflow.com/questions/11796349/instagram-how-to-get-my-user-id-from-username

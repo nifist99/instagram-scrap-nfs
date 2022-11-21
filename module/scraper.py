@@ -39,7 +39,7 @@ def retry(func):
 
 
 class Insta:
-    def __init__(self, username, password, timeout=30, browser='chrome', headless=False):
+    def __init__(self, username, password, timeout=30, browser='chrome', headless=True):
         # current working directory/driver
         #install chroem driver if not exist
         chromedriver_autoinstaller.install()
@@ -133,17 +133,17 @@ class Insta:
         except:
             return False
 
-    def fetch_userAgent(self):
+    def fetch_userAgent(self,url):
 
         try:
+            self.driver.get(url)
             user_agent= self.driver.execute_script("return navigator.userAgent")
             return user_agent
         except:
             return False
 
-    def get_cookie(self):
+    def cookie(self):
         try:
-            self.driver.get('https://www.instagram.com/tanlalana.farm/')
             cookie = self.driver.get_cookies()
 
             return cookie
