@@ -1,6 +1,6 @@
 
 USERNAME = 'harikarinjani@gmail.com'
-PASSWORD = 'November101121!'
+PASSWORD = 'November101121'
 
 
 import requests

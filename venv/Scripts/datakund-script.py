@@ -1,4 +1,4 @@
-#!C:\python\FREELANCE\INSTAGRAM-SCRAPY\venv\Scripts\python.exe
+#!C:\python\FREELANCE\instagram-scrap-nfs\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'bot-studio==1.4.0','console_scripts','datakund'
 import re
 import sys

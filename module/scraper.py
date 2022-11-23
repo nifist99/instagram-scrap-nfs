@@ -18,6 +18,8 @@ import chromedriver_autoinstaller
 import os
 import time
 
+import undetected_chromedriver.v2 as uc
+
 def retry(func):
     """
     Adds retry functionality to functions
@@ -39,7 +41,7 @@ def retry(func):
 
 
 class Insta:
-    def __init__(self, username, password, timeout=30, browser='chrome', headless=True):
+    def __init__(self, username, password, timeout=30, browser='chrome', headless=False):
         # current working directory/driver
         #install chroem driver if not exist
         chromedriver_autoinstaller.install()
@@ -74,7 +76,7 @@ class Insta:
             options.add_argument("--start-maximized")
 
             # current working directory/driver/chrome
-            self.driver = webdriver.Chrome(options=options)
+            self.driver = uc.Chrome()
                 
             # self.driver = webdriver.Chrome(
             #     executable_path="C:\chromedriver_win32\chromedriver.exe",
