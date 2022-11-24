@@ -21,6 +21,22 @@ class Api:
             return Api.setting(code)
 
     
+    def check(username):
+        try:
+            url = f'{base_url}/instagram/check/{username}'
+
+            payload={}
+            headers = {}
+
+            response = requests.request("GET", url, headers=headers, data=payload)
+
+            r = response.json()
+
+            return r
+        except:
+            return Api.check(username)
+
+    
     def save(key):
         try:
                 url = f"{base_url}/instagram/save"

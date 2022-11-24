@@ -74,53 +74,60 @@ def main():
         for row in users_list['users']:
             print(row)
             print(row['user']['username'])
-            info = "https://www.instagram.com/api/v1/users/web_profile_info/?username="+row['user']['username']
+            check_db = Api.check(row['user']['username'])
+
+            if check_db['status'] == 'failed':
+                info = "https://www.instagram.com/api/v1/users/web_profile_info/?username="+row['user']['username']
+                
+                test = f"https://www.instagram.com/{row['user']['username']}/"
+
+                d = ig.fetch_userAgent(test)
+
+                pay={}
+                head = {
+                    'Cookie': cok,
+                    'X-CSRF-Token':csrf,
+                    'User-Agent': d,
+                    'X-IG-App-ID':'936619743392459'
+                }
+
+                res = requests.get(info, headers=head, data=pay)
+
+                hasil = res.json()
+
+                try:
+                    num = ""
+                    stf = str(hasil['data']['user']['biography'])
+                    for c in stf:
+                        if c.isdigit():
+                            num = num + c
+
+                except:
+                    num ='na'
+
+                try:
+                    saves = {
+                                'instagram_id'            :result['id'],
+                                'bio'                     :hasil['data']['user']['biography'],
+                                'id_ig'                   :hasil['data']['user']['id'],
+                                'business_category_name'  :hasil['data']['user']['business_category_name'],
+                                'username'                :hasil['data']['user']['username'],
+                                'external_url'            :hasil['data']['user']['external_url'],
+                                'external_url_linkshimmed':hasil['data']['user']['external_url_linkshimmed'],
+                                'full_name'               :hasil['data']['user']['full_name'],
+                                'profile_pic_url'         :hasil['data']['user']['profile_pic_url'],
+                                'email'                   :'N/A',
+                                'phone'                   : num,
+                            }
+                    t=Api.save(saves)
+                    print(t)
+
+                except:
+                    profile = 'N/A'
             
-            test = f"https://www.instagram.com/{row['user']['username']}/"
+            else:
 
-            d = ig.fetch_userAgent(test)
-
-            pay={}
-            head = {
-                'Cookie': cok,
-                'X-CSRF-Token':csrf,
-                'User-Agent': d,
-                'X-IG-App-ID':'936619743392459'
-            }
-
-            res = requests.get(info, headers=head, data=pay)
-
-            hasil = res.json()
-
-            try:
-                num = ""
-                stf = str(hasil['data']['user']['biography'])
-                for c in stf:
-                    if c.isdigit():
-                        num = num + c
-
-            except:
-                num ='na'
-
-            try:
-                saves = {
-                            'instagram_id'            :result['id'],
-                            'bio'                     :hasil['data']['user']['biography'],
-                            'id_ig'                   :hasil['data']['user']['id'],
-                            'business_category_name'  :hasil['data']['user']['business_category_name'],
-                            'username'                :hasil['data']['user']['username'],
-                            'external_url'            :hasil['data']['user']['external_url'],
-                            'external_url_linkshimmed':hasil['data']['user']['external_url_linkshimmed'],
-                            'full_name'               :hasil['data']['user']['full_name'],
-                            'profile_pic_url'         :hasil['data']['user']['profile_pic_url'],
-                            'email'                   :'N/A',
-                            'phone'                   : num,
-                        }
-                t=Api.save(saves)
-                print(t)
-
-            except:
-                profile = 'N/A'
+                print("data sudah ada")
 
         
 
